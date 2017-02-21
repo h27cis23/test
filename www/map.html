@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/maps_style.css">
+    <link rel="stylesheet" href="css/transition.css">
+    <script src="components/loader.js"></script>
+    <script src="js/test.js"></script>
+    <script async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZpkfx2N0RrPmJaMrfTAx2IqqoVClolY0
+      &callback=initMap">
+    </script>
+    <title>マップ画面</title>
+</head>
+
+<body>  
+    
+    <header class="header">
+        <br />
+        <form style="display: inline">
+            <input type="button" class="back" onClick='back();' value="＜">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            マップ画面
+        </form>
+    </header>
+    <!--マップを表示する-->
+    <div class="text" id="map"></div>
+    <div class="text" id="run_dis"></div>
+    <div class="text" id="start_time">開始時間：00：00：00</div>
+    <div class="text" id="run_time">経過時間：00秒</div>
+    
+
+    <button class="button_start" onclick="start()">開始</button>
+    <button class="button_end" onclick="finish()">終了</button><br/><br />
+    <div class="text" id="course"  style="display: inline">コース：0</div><button class="change" onclick="change()">コース変更</button><br />
+    <div calss="text" id="type" style="display: inline"></div><button class="change" onclick="typechange()">タイプ変更</button><br /><br />
+    
+    
+    <div>片道の距離 <select id="TravelMode" onchange="reRender()" class="zoro">
+    <option value="WALKING" selected>徒歩</option><br />
+        移動距離 <input type="text" id="journey" class="text" value="">
+    
+    <button  class="button_home"  ><img src="image/homew.png"></button>
+    <button  class="button_sea"  ><img src="image/searchw.png"></button>
+    <button  class="screen_map"  ><img src="image/routew.png"></button>
+    <button  class="button_his"  ><img src="image/historyw.png"></button>
+</body>
+</html>

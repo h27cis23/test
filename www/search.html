@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/transition.css">
+    <script src="components/loader.js"></script>
+    <script src="js/test.js"></script>
+</head>
+<body>
+    <header class="header">
+        <br />
+        <center><b>検索画面</b></center>
+        
+    </header>
+    <form name="search_form" action="map.html">
+        <p class="text">距離  <input type="number" name="dis" step="0.1" size="10">km</p>
+        <p class="text">時間  <input type="number" name="min" step="1" size="10">分</p>
+        <p><input id="submit_button" type="submit" value="検索" onclick="Search_distance()"></p>
+    </form>    
+        
+    <!--<form name="select_form" action="map.html">
+        <p class="text">履歴</p>
+        <select name="his">
+        <option value="data1">履歴１</option>
+        <option value="data2">履歴２</option>
+        <option value="data3">履歴３</option>
+        <option value="data4">履歴４</option>
+        <option value="data5">履歴５</option>
+        <option value="data6">履歴６</option>
+        </select>
+        <p><input id="submit_button" type="submit" value="検索" onclick="Select_his()"></p>
+    </form>-->
+    
+    <button  class="button_home" onclick="location.href='index.html'" ><img src="image/homew.png"></button>
+    <button  class="screen_sea"  ><img src="image/searchw.png"></button>
+    <button  class="button_map"  ><img src="image/routew.png"></button>
+    <button  class="button_his"  onclick="location.href='history.html'"><img src="image/historyw.png"></button>
+
+</body>
+</html>

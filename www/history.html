@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/transition.css">
+    <script src="components/loader.js"></script>
+    <script src="js/test.js"></script>
+</head>
+<body onload="his()">
+    <header class="header">
+        <br />
+        <center><b>履歴画面</b></center>
+        
+    </header>
+    <div class="text" id="date"></div>
+    <div class="text" id="dis"></div>
+    <div class="text" id="time"></div>
+    <div class="text" id="speed"></div>
+    <div class="text" id="average"></div>
+    <div class="text" id="start"></div>
+    <div class="text" id="point"></div>
+    <div class="text" id="goal"></div>
+    <p><a class="text"id="maps" href="his_map.html"></a></p>
+    <button  onclick="del()" >履歴削除</button>
+    <p id = his></p>
+    
+    <button  class="button_home" onclick="location.href='index.html'" ><img src="image/homew.png"></button>
+    <button  class="button_sea"  onclick="location.href='search.html'" ><img src="image/searchw.png"></button>
+    <button  class="button_map"  ><img src="image/routew.png"></button>
+    <button  class="screen_his"  ><img src="image/historyw.png"></button>
+        
+</body>
+</html>

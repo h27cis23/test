@@ -1,0 +1,84 @@
+html, body { height: 100%; margin: 0; padding: 0; background: #ffffff;position: fixed}
+
+/*マップ*/
+#map { height: 50%; }
+
+.header{
+    background-color: #00BFFF;
+    color: #ffffff;
+        margin-top: 0px;
+    font-weight: bold;
+}
+.back{
+    background-color: #00BFFF;
+    margin-top: 0px;
+    margin-left: 5px;
+}
+.center {
+    text-align: center;
+    font-size: 20px;
+}
+
+.text{
+    font-size: 20px;
+}
+/*開始ボタン*/
+.button_start {
+    margin-left: 25%;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    background-color: #00BFFF;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+    
+            /* 角丸の指定 */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/*終了ボタン*/
+.button_end {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    background-color: #00BFFF;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+    
+            /* 角丸の指定 */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/*共通ボタン*/
+.button {
+    font-size: 1em;
+    font-weight: bold;
+    padding: 1% 10%;
+    background-color: #404040;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+.change{
+    font-size: 10px;
+    width: 100px;
+    height: 20px;
+    background-color: #404040;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+    
+            /* 角丸の指定 */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/transition.css">
+    <script src="components/loader.js"></script>
+</head>
+<body class="fixed">
+    <header class="header">
+        <br />
+        <center><b>ホーム画面</b></center>
+    </header>
+    
+    <center><h1>このアプリについて</h1></center>
+        <h2>検索画面</h2>
+            <b>距離又は時間を入力して検索してください。</b><br />
+            <b>※履歴がない場合は時間での検索ができません。</b>
+        <h2>マップ画面</h2>
+            <b>距離が適切でない場合はコース変更、
+                周回ルートが複雑な場合はタイプ変更をしてみてください。</b><br />
+            <b>開始ボタンを押して走り始めてください。</b><br/>
+            <b>走り終わりには終了ボタンを押してください。</b><br />
+        <h2>履歴画面</h2>
+            <b>最新の６件まで履歴が表示されます。</b>
+        <br />
+        
+    <button  class="screen_home" ><img src="image/homew.png"></button>
+	<button  class="button_sea"  onclick="location.href='search.html'"><img src="image/searchw.png"></button>
+    <button  class="button_map"   ><img src="image/routew.png"></button>
+    <button  class="button_his"  onclick="location.href='history.html'"><img src="image/historyw.png"></button>
+</body>
+</html>

@@ -1,0 +1,127 @@
+/*ホーム画面ボタン*/
+.screen_home {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    border: 5px solid #EF454A;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+/*検索画面ボタン*/
+.button_sea {
+    position: absolute;
+    bottom: 0px;
+    left: 95px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+/*マップ画面ボタン*/
+.button_map {
+    position: absolute;
+    bottom: 0px;
+    left: 190px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+/*履歴画面ボタン*/
+.button_his {
+    position: absolute;
+    bottom: 0px;
+    left: 285px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+
+
+
+/*ホーム画面ボタン*/
+.button_home {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+/*検索画面ボタン*/
+.screen_sea {
+    position: absolute;
+    bottom: 0px;
+    left: 95px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    border: 5px solid #EF454A;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+/*マップ画面ボタン*/
+.screen_map {
+    position: absolute;
+    bottom: 0px;
+    left: 190px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    border: 5px solid #EF454A;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+/*履歴画面ボタン*/
+.screen_his {
+    position: absolute;
+    bottom: 0px;
+    left: 285px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 95px;
+    height: 50px;
+    background-color: #00BFFF;
+    border: 5px solid #EF454A;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+

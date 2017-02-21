@@ -1,0 +1,57 @@
+/*jQueryを使ってい画面幅を取得する*/
+
+body{
+    background-color: #ffffff;
+    margin-top: 10%;
+}
+
+.center {
+    text-align: center;
+}
+.text{
+    font-size: 20px;
+}
+
+
+
+/*切り替えボタン*/
+.button_switch {
+    margin-top: 90%;
+    margin-left: 35%;
+    font-size: 25px;
+    font-weight: bold;
+    width: 190px;
+    height: 50px;
+    background-color: #404040;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+/*開始ボタン*/
+.button_start {
+    margin-top: 80%;
+    margin-left: 30%;
+    font-size: 1em;
+    font-weight: bold;
+    width: 190px;
+    height: 50px;
+    background-color: #404040;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
+
+#map { height: 100%; }
+
+/*検索ボタン*/
+input#submit_button{
+    font-size: 25px;
+    margin-left: 70%;
+    width: 150px;
+    height: 30px;
+    background-color: #404040;
+    color: #ffffff;
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;
+}
