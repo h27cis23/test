@@ -640,7 +640,7 @@ function his(){
     
     dis = dis*10;
     dis = Math.round(dis);
-    dis = dis/10;
+    dis = dis/10; 
     
     //履歴画面を書き換える
     document.getElementById("date").innerHTML   ="日付：   "+mon+"月"+day+"日";
