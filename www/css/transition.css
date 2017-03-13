@@ -1,5 +1,5 @@
 /*ホーム画面ボタン*/
-.screen_home {
+.button_home {
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -8,12 +8,10 @@
     width: 95px;
     height: 50px;
     background-color: #00BFFF;
-    border: 5px solid #EF454A;
     color: #ffffff;
     -webkit-border-radius: 3px;  
     -moz-border-radius: 3px;
 }
-
 /*検索画面ボタン*/
 .button_sea {
     position: absolute;
@@ -28,7 +26,6 @@
     -webkit-border-radius: 3px;  
     -moz-border-radius: 3px;
 }
-
 /*マップ画面ボタン*/
 .button_map {
     position: absolute;
@@ -43,7 +40,6 @@
     -webkit-border-radius: 3px;  
     -moz-border-radius: 3px;
 }
-
 /*履歴画面ボタン*/
 .button_his {
     position: absolute;
@@ -59,11 +55,8 @@
     -moz-border-radius: 3px;
 }
 
-
-
-
 /*ホーム画面ボタン*/
-.button_home {
+.screen_home {
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -72,11 +65,11 @@
     width: 95px;
     height: 50px;
     background-color: #00BFFF;
+    border: 5px solid #EF454A;
     color: #ffffff;
     -webkit-border-radius: 3px;  
     -moz-border-radius: 3px;
 }
-
 /*検索画面ボタン*/
 .screen_sea {
     position: absolute;
@@ -92,7 +85,6 @@
     -webkit-border-radius: 3px;  
     -moz-border-radius: 3px;
 }
-
 /*マップ画面ボタン*/
 .screen_map {
     position: absolute;
@@ -108,7 +100,6 @@
     -webkit-border-radius: 3px;  
     -moz-border-radius: 3px;
 }
-
 /*履歴画面ボタン*/
 .screen_his {
     position: absolute;

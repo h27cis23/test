@@ -1,18 +1,11 @@
 distance = 0;   //検索された距離
-count = 0;      //中継地点の数
 start_time=0;         //開始時刻
 finish_time=0;        //終了時刻
 start_test=0;finish_test=0;
 result_time=0;        //走った時間
-num = 0;
 course =0;
 chk = 0;
-total_dis = 0;
-
-
-//var directionsService = new google.maps.DirectionsService();
-////var distest = new google.maps.DirectionService();
-
+count = 0;
 
 //距離、時間の検索
 function Search_distance(){
@@ -33,7 +26,7 @@ function Search_distance(){
         //速さの取得
         var meyasu = window.localStorage.getItem('speed');
         //距離を計算
-        distance = meyasu / (minute *60 );        
+        distance = meyasu * (minute / 60 );
     }
     
     //距離のチェック
@@ -48,11 +41,9 @@ function Search_distance(){
 //履歴の検索
 function Select_his(){
     var select = select_form.his.value; //選択したデータの取得
-    var test = 0;
     //選択formチェック
     switch(select){
         case "data1":
-            test = 1;
             alert(window.localStorage.getItem('dis'));
             break;
         case "data2":
@@ -76,7 +67,7 @@ function Select_his(){
 //現在地取得、マップ表示
 function initMap() {
     var course = 1;
-    
+    var total_dis = 0;
     //コースのタイプを取得
     var type = window.localStorage.getItem('type');
     if(type == null) type = 0;
@@ -131,11 +122,12 @@ function initMap() {
  
     //周回コース
     if(type == 0){
+        document.getElementById("type").innerHTML="周回ルート";
     //geolocation
     if (navigator.geolocation) {
     //ブラウザでgeolocationが使える場合
     navigator.geolocation.getCurrentPosition(function(position) {        
-        count = 4;      //ピンの数
+         count = 4;      //ピンの数
 
         var start_pos = {
             lat: position.coords.latitude,
@@ -215,24 +207,7 @@ function initMap() {
             lng: position.coords.longitude-(move_distance/count)
         };
         }
-        
-        lat1=start_pos.lat;
-        lng1=start_pos.lng;
-        lat2=via_pos.lat;
-        lng2=via_pos.lng;
-        lat3=via2_pos.lat;
-        lng3=via2_pos.lng;
-        lat4=via3_pos.lat;
-        lng4=via3_pos.lng;
-        lat5=goal_pos.lat;
-        lng5=goal_pos.lng;
-        
-        window.localStorage.setItem('start_lat', lat1);
-        window.localStorage.setItem('start_lng', lng1);
-        window.localStorage.setItem('via_lat', lat2);
-        window.localStorage.setItem('via_lng', lng2);
-        window.localStorage.setItem('via2_lat', lat3);
-        window.localStorage.setItem('via2_lng', lng3);                            
+
                             
         //移動距離(たぶん道のり) 
         var myTravelMode =  (document.getElementById('TravelMode').value == 'DRIVING')
@@ -308,7 +283,7 @@ function initMap() {
                     ? (result.routes[0].legs[0].distance.value / 1000)
                     : result.routes[0].legs[0].distance.value;
                 total_dis += Number((result.routes[0].legs[0].distance.value / 1000));
-                document.getElementById("run_dis").innerHTML="距離： "+ total_dis + "km";
+                document.getElementById("run_dis").innerHTML="距離： "+ total_dis.toFixed(1) + "km";
                         window.localStorage.setItem('search_dis',getdistance);
                         window.localStorage.setItem('dis',total_dis);
                 if(Number(document.getElementById("journey").value) /1000 > getdistance*3){
@@ -357,6 +332,8 @@ function initMap() {
     }
     //往復コース
     if(type == 1){
+        document.getElementById("type").innerHTML="往復ルート";
+
         if (navigator.geolocation) {
     //ブラウザでgeolocationが使える場合
     navigator.geolocation.getCurrentPosition(function(position) {        
@@ -369,7 +346,9 @@ function initMap() {
             lng: position.coords.longitude
         };
         
+        //ここを変更して正確な距離に近づける
         var move_distance = getdistance*0.0089831487;       //移動距離
+        
         
         var goal_pos = {
             lat:position.coords.latitude,
@@ -403,17 +382,6 @@ function initMap() {
         };
         }
         
-        lat1=start_pos.lat;
-        lng1=start_pos.lng;
-        lat2=via_pos.lat;
-        lng2=via_pos.lng;
-        lat3=goal_pos.lat;
-        lng3=goal_pos.lng;
-        
-        window.localStorage.setItem('start_lat', lat1);
-        window.localStorage.setItem('start_lng', lng1);
-        window.localStorage.setItem('via_lat', lat2);
-        window.localStorage.setItem('via_lng', lng2);
         
         //移動距離(たぶん道のり) 
         var myTravelMode =  (document.getElementById('TravelMode').value == 'DRIVING')
@@ -431,7 +399,7 @@ function initMap() {
                     (result.routes[0].legs[0].distance.value >= 1000)
                     ? (result.routes[0].legs[0].distance.value / 1000)
                     : result.routes[0].legs[0].distance.value;
-                document.getElementById("run_dis").innerHTML="距離： "+ (result.routes[0].legs[0].distance.value / 1000) * 2 + "km";
+                document.getElementById("run_dis").innerHTML="距離： "+ ((result.routes[0].legs[0].distance.value / 1000) * 2).toFixed(1) + "km";
                         window.localStorage.setItem('search_dis',getdistance);
                         window.localStorage.setItem('dis',result.routes[0].legs[0].distance.value / 1000 * 2);
                 if(Number(document.getElementById("journey").value) /1000 > getdistance*3){
@@ -476,7 +444,7 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
     }
-    window.localStorage.setItem('type', type)
+    window.localStorage.setItem('type', type);
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -484,6 +452,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setContent(browserHasGeolocation ?
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
+}
+
+function back(){
+    if(window.localStorage.getItem('state') != start ){
+        location.href="search.html";
+    }
 }
 
 //開始時間
@@ -503,6 +477,9 @@ function start(){
     start_test = start_hours*3600+start_min*60+start_sec;
     document.getElementById("start_time").innerHTML="開始時間: "+start_hours+":"+start_min+":"+start_sec;
     run_timer();
+    
+    window.localStorage.setItem('state', start);
+    
 }
 
 //コースの変更
@@ -510,6 +487,7 @@ function change(){
     var course = 0;
     var course_text = document.getElementById('course').innerHTML;
     
+    if(window.localStorage.getItem('state') != start){
     if(course_text == "コース：0"){
         course = 1;
     }else if(course_text == "コース：1"){
@@ -519,13 +497,14 @@ function change(){
     }else {
         course = 0;
     }
-    
     document.getElementById("course").innerHTML="コース："+course;
     initMap();
+    }
 }
 
 //タイプ変更
 function typechange(){
+    if(window.localStorage.getItem('state') != start){
     var type = window.localStorage.getItem('type');
     if(type == null) type = 0;
     
@@ -536,6 +515,7 @@ function typechange(){
     }
     window.localStorage.setItem('type', type);
     location.reload();
+    }
 }
 
 //タイマー
@@ -553,6 +533,8 @@ function run_timer(){
 
 //終了時間
 function finish(){
+    
+    if(window.localStorage.getItem('state') == start){
     finish_time = new Date();       //終了時刻を取得
     
     //時間に変換して表示
@@ -575,8 +557,20 @@ function finish(){
             window.localStorage.setItem('chk',2);
     }
     
+    //履歴にデータを保存
+    if(window.localStorage.getItem('chk') != 2){
+    window.localStorage.setItem('his_mon', window.localStorage.getItem('mon'));
+    window.localStorage.setItem('his_day', window.localStorage.getItem('day'));
+    window.localStorage.setItem('his_dis', window.localStorage.getItem('dis'));
+    window.localStorage.setItem('his_time', window.localStorage.getItem('result_his'));
+    }
+    
     //履歴画面に切り替え
     location.href = 'history.html';
+    window.localStorage.removeItem('state');
+    }else{
+        alert("ランニングが開始されていません。");
+    }
 }
 
 //経過時間
@@ -592,7 +586,6 @@ function timer(){
 function his(){
     var his_num = window.localStorage.getItem('his_num');
     if(his_num == null) his_num = 0;
-    var average = 0;
     
     var mon1,day1,dis1,h1,m1,s1,speed1;
     var mon2,day2,dis2,h2,m2,s2,speed2;
@@ -600,12 +593,11 @@ function his(){
     var mon4,day4,dis4,h4,m4,s4,speed4;
     var mon5,day5,dis5,h5,m5,s5,speed5;
     
- 
     //ローカルストレージからデータをゲット
-    var mon = window.localStorage.getItem('mon');
-    var day = window.localStorage.getItem('day');
-    var dis = window.localStorage.getItem('dis');
-    var time = window.localStorage.getItem('result_his');
+    var mon = window.localStorage.getItem('his_mon');
+    var day = window.localStorage.getItem('his_day');
+    var dis = window.localStorage.getItem('his_dis');
+    var time = window.localStorage.getItem('his_time');
     
     
     //時間に変換
@@ -614,20 +606,18 @@ function his(){
     var s = Math.floor(time%60);
     
     //速さを計算
-    var speed = Math.round(dis/(time/3600));    
-
-    average = window.localStorage.getItem('average');
-    if(average == null) average = speed;
+    var speed = Math.round(dis/(time/3600));
     
-
+    dis = dis*10;
+    dis = Math.round(dis);
+    dis = dis/10;
+    
     //履歴画面を書き換える
     document.getElementById("date").innerHTML   ="日付：   "+mon+"月"+day+"日";
     document.getElementById("dis").innerHTML    ="距離：   "+dis + "km";
     document.getElementById("time").innerHTML   ="時間：   "+h+"時間"+m+"分"+s+"秒";
-    document.getElementById("speed").innerHTML  ="速さ：   " + speed + "km/h";
-    document.getElementById("average").innerHTML  ="平均：   " + average + "km/h";
-    
-    document.getElementById("maps").innerHTML  ="マップを表示";
+    document.getElementById("speed").innerHTML  ="速さ：   " + speed + "km/h";  
+//    document.getElementById("maps").innerHTML  ="マップを表示";
     if(window.localStorage.getItem('chk') == 1)his_num++;
     
     
@@ -640,9 +630,6 @@ function his(){
         m1      = window.localStorage.getItem('m1');
         s1      = window.localStorage.getItem('s1');
         speed1  = window.localStorage.getItem('speed1');
-        average = (speed + speed1)/2;
-        alert(average);
-        window.localStorage.setItem('average', average);
     }
     //3件目の履歴を取得
     if(his_num > 2){
@@ -653,8 +640,6 @@ function his(){
         m2      = window.localStorage.getItem('m2');
         s2      = window.localStorage.getItem('s2');
         speed2  = window.localStorage.getItem('speed2');
-        average = (speed + speed1 + speed2)/3;
-        window.localStorage.setItem('average', average);
     }
     //4件目の履歴を取得
     if(his_num > 3){
@@ -665,8 +650,6 @@ function his(){
         m3      = window.localStorage.getItem('m3');
         s3      = window.localStorage.getItem('s3');
         speed3  = window.localStorage.getItem('speed3');
-        average = (speed + speed1 + speed2 + speed3)/4;
-        window.localStorage.setItem('average', average);
     }
     //5件目の履歴を取得
     if(his_num > 4){
@@ -677,8 +660,6 @@ function his(){
         m4      = window.localStorage.getItem('m4');
         s4      = window.localStorage.getItem('s4');
         speed4  = window.localStorage.getItem('speed4');
-        average = (speed + speed1 + speed2 + speed3 + speed4)/5;
-        window.localStorage.setItem('average', average);
     }
     //6件目の履歴を取得
     if(his_num > 5){
@@ -689,8 +670,6 @@ function his(){
         m5      = window.localStorage.getItem('m5');
         s5      = window.localStorage.getItem('s5');
         speed5  = window.localStorage.getItem('speed5');
-        average = (speed + speed1 + speed2 + speed3 + speed4 + speed5)/6;
-        window.localStorage.setItem('average', average);
     }
         
     //履歴2件目
@@ -699,7 +678,7 @@ function his(){
         var dis_txt1 = document.createElement('div');
         var time_txt1 = document.createElement('div');
         var speed_txt1 = document.createElement('div');
-        var num_txt = document.createElement('div');
+        var br = document.createElement('br');
         date_txt1.id = "mon1"; 
         date_txt1.innerHTML = "日付：   "+mon1+"月"+day1+"日";
         dis_txt1.id = "mon1"; 
@@ -708,15 +687,13 @@ function his(){
         time_txt1.innerHTML = "時間：   "+h1+"時間"+m1+"分"+s1+"秒";
         speed_txt1.id = "mon1"; 
         speed_txt1.innerHTML = "速さ：   " + speed1 + "km/h";
-        num_txt.id = "mon1";
-        num_txt.innerHTML = "his_num = " + his_num;
         
         var objBody = document.getElementsByTagName("body").item(0); 
         objBody.appendChild(date_txt1);
         objBody.appendChild(dis_txt1);
         objBody.appendChild(time_txt1);
         objBody.appendChild(speed_txt1);
-        objBody.appendChild(num_txt);
+        objBody.appendChild(br);
     
     }
     //履歴3件目
@@ -725,7 +702,7 @@ function his(){
         var dis_txt2 = document.createElement('div');
         var time_txt2 = document.createElement('div');
         var speed_txt2 = document.createElement('div');
-        var num_txt = document.createElement('div');
+        var br = document.createElement('br');
         date_txt2.id = "mon2"; 
         date_txt2.innerHTML = "日付：   "+mon2+"月"+day2+"日";
         dis_txt2.id = "mon2"; 
@@ -734,15 +711,13 @@ function his(){
         time_txt2.innerHTML = "時間：   "+h2+"時間"+m2+"分"+s2+"秒";
         speed_txt2.id = "mon2"; 
         speed_txt2.innerHTML = "速さ：   " + speed2 + "km/h";
-        num_txt.id = "mon2";
-        num_txt.innerHTML = "his_num = " + his_num;
         
         var objBody = document.getElementsByTagName("body").item(0); 
         objBody.appendChild(date_txt2);
         objBody.appendChild(dis_txt2);
         objBody.appendChild(time_txt2);
         objBody.appendChild(speed_txt2);
-        objBody.appendChild(num_txt);
+        objBody.appendChild(br);
         }
     //履歴4件目
     if(his_num > 3){
@@ -750,7 +725,7 @@ function his(){
         var dis_txt3 = document.createElement('div');
         var time_txt3 = document.createElement('div');
         var speed_txt3 = document.createElement('div');
-        var num_txt = document.createElement('div');
+        var br = document.createElement('br');
         date_txt3.id = "mon3"; 
         date_txt3.innerHTML = "日付：   "+mon3+"月"+day3+"日";
         dis_txt3.id = "mon3"; 
@@ -759,15 +734,13 @@ function his(){
         time_txt3.innerHTML = "時間：   "+h3+"時間"+m3+"分"+s3+"秒";
         speed_txt3.id = "mon3"; 
         speed_txt3.innerHTML = "速さ：   " + speed3 + "km/h";
-        num_txt.id = "mon3";
-        num_txt.innerHTML = "his_num = " + his_num;
         
         var objBody = document.getElementsByTagName("body").item(0); 
         objBody.appendChild(date_txt3);
         objBody.appendChild(dis_txt3);
         objBody.appendChild(time_txt3);
         objBody.appendChild(speed_txt3);
-        objBody.appendChild(num_txt);
+        objBody.appendChild(br);
         }
     //履歴5件目
     if(his_num > 4){
@@ -775,7 +748,7 @@ function his(){
         var dis_txt4 = document.createElement('div');
         var time_txt4 = document.createElement('div');
         var speed_txt4 = document.createElement('div');
-        var num_txt = document.createElement('div');
+        var br = document.createElement('br');
         date_txt4.id = "mon4"; 
         date_txt4.innerHTML = "日付：   "+mon4+"月"+day4+"日";
         dis_txt4.id = "mon4"; 
@@ -784,15 +757,13 @@ function his(){
         time_txt4.innerHTML = "時間：   "+h4+"時間"+m4+"分"+s4+"秒";
         speed_txt4.id = "mon4"; 
         speed_txt4.innerHTML = "速さ：   " + speed4 + "km/h";
-        num_txt.id = "mon4";
-        num_txt.innerHTML = "his_num = " + his_num;
         
         var objBody = document.getElementsByTagName("body").item(0); 
         objBody.appendChild(date_txt4);
         objBody.appendChild(dis_txt4);
         objBody.appendChild(time_txt4);
         objBody.appendChild(speed_txt4);
-        objBody.appendChild(num_txt);
+        objBody.appendChild(br);
         }
     //履歴6件目
     if(his_num > 5){
@@ -800,7 +771,7 @@ function his(){
         var dis_txt5 = document.createElement('div');
         var time_txt5 = document.createElement('div');
         var speed_txt5 = document.createElement('div');
-        var num_txt = document.createElement('div');
+        var br = document.createElement('br');
         date_txt5.id = "mon5"; 
         date_txt5.innerHTML = "日付：   "+mon5+"月"+day5+"日";
         dis_txt5.id = "mon5"; 
@@ -809,17 +780,15 @@ function his(){
         time_txt5.innerHTML = "時間：   "+h5+"時間"+m5+"分"+s5+"秒";
         speed_txt5.id = "mon5"; 
         speed_txt5.innerHTML = "速さ：   " + speed5 + "km/h";
-        num_txt.id = "mon5";
-        num_txt.innerHTML = "his_num = " + his_num;
         
         var objBody = document.getElementsByTagName("body").item(0); 
         objBody.appendChild(date_txt5);
         objBody.appendChild(dis_txt5);
         objBody.appendChild(time_txt5);
         objBody.appendChild(speed_txt5);
-        objBody.appendChild(num_txt);
+        objBody.appendChild(br);
         }
-
+    
     //2件目の為に履歴を保存
     window.localStorage.setItem('mon1', mon);
     window.localStorage.setItem('day1', day);
@@ -861,7 +830,7 @@ function his(){
     window.localStorage.setItem('s5', s4);
     window.localStorage.setItem('speed5', speed4);
     window.localStorage.setItem('his_num', his_num);
-//    console.log(his_num);
+    console.log(his_num);
     //セッションで変数を送る
     window.localStorage.setItem('speed', speed);
     window.localStorage.setItem('chk', 0);
@@ -869,7 +838,10 @@ function his(){
 
 //履歴削除
 function del(){
+    window.localStorage.removeItem('his_mon');
+    window.localStorage.removeItem('his_day');
+    window.localStorage.removeItem('his_dis');
+    window.localStorage.removeItem('his_time');
     window.localStorage.removeItem('his_num');
-    window.localStorage.removeItem('average');
     location.reload();
 }

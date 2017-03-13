@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="css/maps_style.css">
     <link rel="stylesheet" href="css/transition.css">
     <script src="components/loader.js"></script>
-    <script src="js/test.js"></script>
+    <script src="js/running.js"></script>
     <script async defer
-     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZpkfx2N0RrPmJaMrfTAx2IqqoVClolY0
-      &callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZpkfx2N0RrPmJaMrfTAx2IqqoVClolY0
+        &callback=initMap">
     </script>
     <title>マップ画面</title>
 </head>
@@ -39,10 +39,11 @@
     <div calss="text" id="type" style="display: inline"></div><button class="change" onclick="typechange()">タイプ変更</button><br /><br />
     
     
-    <div>片道の距離 <select id="TravelMode" onchange="reRender()" class="zoro">
+    <div>片道の距離 <select id="TravelMode" onchange="reRender()">
     <option value="WALKING" selected>徒歩</option><br />
         移動距離 <input type="text" id="journey" class="text" value="">
     
+    <!--画面切替ボタン-->
     <button  class="button_home"  ><img src="image/homew.png"></button>
     <button  class="button_sea"  ><img src="image/searchw.png"></button>
     <button  class="screen_map"  ><img src="image/routew.png"></button>
